@@ -2,32 +2,30 @@
 #
 # Copyright (c) 2003 Zope Corporation and Contributors.
 # All Rights Reserved.
-#
+# 
 # This software is subject to the provisions of the Zope Public License,
 # Version 2.0 (ZPL).  A copy of the ZPL should accompany this distribution.
 # THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
 # WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
-#
+# 
 ##############################################################################
-"""Unauthorized Exception
-
-$Id: unauthorized.py,v 1.3 2004/03/13 23:34:29 srichter Exp $
 """
-from zope.app.http.interfaces import IHTTPException
-from zope.interface import implements
+$Id: interfaces.py,v 1.1 2004/03/13 23:34:28 srichter Exp $
+"""
 
-class Unauthorized(object):
+from zope.interface import Interface, Attribute
 
-    implements(IHTTPException)
+class INullResource(Interface):
+    """Placeholder objects for new container items to be created via PUT
+    """
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
+    container = Attribute("The container of the future resource")
+    name = Attribute("The name of the object to be created.")
 
-    def __call__(self):
-        self.request.unauthorized("basic realm='Zope'")
-        return ''
+class IHTTPException(Interface):
+    """Marker interface for http exceptions views
+    """
+    pass
 
-    __str__ = __call__
