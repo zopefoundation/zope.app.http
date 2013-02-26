@@ -42,4 +42,4 @@ class MethodNotAllowedView(object):
     def __call__(self):
         self.request.response.setHeader('Allow', ', '.join(self.allow))
         self.request.response.setStatus(405)
-        return 'Method Not Allowed'
+        return b'Method Not Allowed'

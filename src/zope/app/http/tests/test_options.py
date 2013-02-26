@@ -27,9 +27,9 @@ class IDeletable(zope.interface.Interface):
     "Marker interface that says that something understand the DELETE method"
 
 
+@zope.interface.implementer(IDeletable)
 class Deletable(object):
     "Rocket science implementation of IDeletable"
-    zope.interface.implements(IDeletable)
 
 
 class DeleteView(object):

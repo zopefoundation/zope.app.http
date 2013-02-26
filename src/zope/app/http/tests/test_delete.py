@@ -15,7 +15,7 @@
 """
 from unittest import TestCase, TestSuite, makeSuite
 
-from zope.interface import implements
+from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.filerepresentation.interfaces import IWriteDirectory, IFileFactory
 
@@ -27,9 +27,8 @@ class UnwritableContainer(object):
     pass
 
 
+@implementer(IWriteDirectory, IFileFactory)
 class Container(object):
-
-    implements(IWriteDirectory, IFileFactory)
 
     def __delitem__(self, name):
         delattr(self, name)

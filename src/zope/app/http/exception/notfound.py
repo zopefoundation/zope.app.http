@@ -16,11 +16,10 @@
 __docformat__ = 'restructuredtext'
 
 from zope.publisher.interfaces.http import IHTTPException
-from zope.interface import implements
+from zope.interface import implementer
 
+@implementer(IHTTPException)
 class NotFound(object):
-
-    implements(IHTTPException)
 
     def __init__(self, context, request):
         self.context = context
@@ -33,6 +32,6 @@ class NotFound(object):
             self.request.response.setStatus(409)
         else:
             self.request.response.setStatus(404)
-        return ''
+        return b''
 
     __str__ = __call__

@@ -20,10 +20,10 @@ from zope.publisher.interfaces.http import IHTTPPublisher
 from zope.container.interfaces import ISimpleReadContainer, IItemContainer
 from zope.app.http.put import NullResource
 from zope.publisher.interfaces import NotFound
-from zope.interface import implements
+from zope.interface import implementer
 
+@implementer(IHTTPPublisher)
 class ContainerTraverser(object):
-    implements(IHTTPPublisher)
     __used_for__ = ISimpleReadContainer
 
     def __init__(self, container, request):

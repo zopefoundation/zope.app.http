@@ -14,9 +14,9 @@
 """Test HTTP PUT verb
 """
 from unittest import TestCase, TestSuite, makeSuite
-from StringIO import StringIO
+from io import BytesIO
 
-from zope.interface import implements
+from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.filerepresentation.interfaces import IWriteFile
 from zope.filerepresentation.interfaces import IWriteDirectory, IReadDirectory, IFileFactory
@@ -27,9 +27,8 @@ from zope.location.interfaces import ILocation
 from zope.site.folder import rootFolder
 from zope.app.wsgi.testlayer import BrowserLayer
 
+@implementer(IWriteFile, ILocation)
 class File(object):
-
-    implements(IWriteFile, ILocation)
 
     def __init__(self, name, content_type, data):
         self.name = name
@@ -39,9 +38,8 @@ class File(object):
     def write(self, data):
         self.data = data
 
+@implementer(IWriteDirectory, IReadDirectory, IFileFactory, ILocation)
 class Container(object):
-
-    implements(IWriteDirectory, IReadDirectory, IFileFactory, ILocation)
 
     __name__ = None
     __parent__ = None
@@ -70,8 +68,8 @@ class TestNullPUT(TestCase):
 
         container = Container("put")
         self.rootFolder["put"] = container
-        content = "some content\n for testing"
-        request = TestRequest(StringIO(content),
+        content = b"some content\n for testing"
+        request = TestRequest(BytesIO(content),
                               {'CONTENT_TYPE': 'test/foo',
                                'CONTENT_LENGTH': str(len(content)),
                                })
@@ -99,8 +97,8 @@ class TestNullPUT(TestCase):
         self.rootFolder = rootFolder()
         container = Container("/put")
         self.rootFolder["put"] = container
-        content = "some content\n for testing"
-        request = TestRequest(StringIO(content),
+        content = b"some content\n for testing"
+        request = TestRequest(BytesIO(content),
                               {'CONTENT_TYPE': 'test/foo',
                                'CONTENT_LENGTH': str(len(content)),
                                'HTTP_CONTENT_FOO': 'Bar',
@@ -117,7 +115,7 @@ class TestNullPUT(TestCase):
     def test_put_on_invalid_container_raises_MethodNotAllowed(self):
         import zope.publisher.interfaces.http
 
-        request = TestRequest(StringIO(),
+        request = TestRequest(BytesIO(),
                               {'CONTENT_TYPE': 'test/foo',
                                'CONTENT_LENGTH': '0',
                                })
@@ -132,8 +130,8 @@ class TestFilePUT(TestCase):
 
     def test(self):
         file = File("thefile", "text/x", "initial content")
-        content = "some content\n for testing"
-        request = TestRequest(StringIO(content),
+        content = b"some content\n for testing"
+        request = TestRequest(BytesIO(content),
                               {'CONTENT_TYPE': 'test/foo',
                                'CONTENT_LENGTH': str(len(content)),
                                })
@@ -148,8 +146,8 @@ class TestFilePUT(TestCase):
         ## This was breaking the new Twisted server, so I am now allowing this
         ## this type of request to be valid.
         file = File("thefile", "text/x", "initial content")
-        content = "some content\n for testing"
-        request = TestRequest(StringIO(content),
+        content = b"some content\n for testing"
+        request = TestRequest(BytesIO(content),
                               {'CONTENT_TYPE': 'test/foo',
                                'CONTENT_LENGTH': str(len(content)),
                                'HTTP_CONTENT_FOO': 'Bar',
@@ -166,7 +164,7 @@ class TestFilePUT(TestCase):
         import zope.publisher.interfaces.http
 
         file = object()
-        request = TestRequest(StringIO(),
+        request = TestRequest(BytesIO(),
                               {'CONTENT_TYPE': 'test/foo',
                                'CONTENT_LENGTH': '0',
                                })
