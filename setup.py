@@ -51,7 +51,7 @@ setup(name='zope.app.http',
       package_dir={'': 'src'},
       namespace_packages=['zope', 'zope.app'],
       extras_require=dict(
-          test=['zope.app.wsgi >= 3.9.0',
+          test=['zope.app.wsgi[testbrowser] >= 3.9.0',
                 'zope.browserpage',
                 'zope.component',
                 'zope.login',
