@@ -2,8 +2,8 @@
 CHANGES
 =======
 
-4.0.0a1 (unreleased)
---------------------
+4.0.0 (2016-08-08)
+------------------
 
 - Added support for Python 3.3 up to 3.6.
 
