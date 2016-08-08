@@ -5,8 +5,9 @@ CHANGES
 4.0.0a1 (unreleased)
 --------------------
 
-- Added support for Python 3
+- Added support for Python 3.3 up to 3.6.
 
+- Added support for PyPy2.
 
 3.10.2 (2011-08-09)
 -------------------
