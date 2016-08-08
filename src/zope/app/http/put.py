@@ -15,7 +15,7 @@ __docformat__ = 'restructuredtext'
 from zope.component import queryAdapter
 from zope.event import notify
 from zope.lifecycleevent import ObjectCreatedEvent
-from zope.interface import implements
+from zope.interface import implementer
 from zope.filerepresentation.interfaces import IWriteFile
 from zope.filerepresentation.interfaces import \
     IWriteDirectory, IReadDirectory, IFileFactory
@@ -24,11 +24,10 @@ import zope.publisher.interfaces.http
 from zope.app.http.interfaces import INullResource
 
 
+@implementer(INullResource)
 class NullResource(object):
     """Object representing objects to be created by a `PUT`.
     """
-
-    implements(INullResource)
 
     def __init__(self, container, name):
         self.container = container

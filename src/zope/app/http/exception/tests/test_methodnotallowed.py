@@ -14,9 +14,9 @@
 """Tests for HTTP error views
 """
 from unittest import TestCase, TestSuite, main, makeSuite
-from StringIO import StringIO
+from io import BytesIO
 
-from zope.interface import Interface, implements
+from zope.interface import Interface, implementer
 from zope.publisher.http import HTTPRequest
 from zope.publisher.interfaces.http import IHTTPRequest
 
@@ -27,8 +27,9 @@ class I(Interface):
     pass
 
 
+@implementer(I)
 class C(object):
-    implements(I)
+    pass
 
 
 class GetView(object):
@@ -48,8 +49,6 @@ class DeleteView(object):
 class TestMethodNotAllowedView(TestCase):
 
     def setUp(self):
-        from zope.publisher.interfaces.http import IHTTPRequest
-
         provideAdapter(GetView, (I, IHTTPRequest), Interface, 'GET')
         provideAdapter(DeleteView, (I, IHTTPRequest), Interface, 'DELETE')
         provideAdapter(GetView, (I, IHTTPRequest), Interface, 'irrelevant')
@@ -69,10 +68,9 @@ class TestMethodNotAllowedView(TestCase):
         from zope.publisher.interfaces.http import MethodNotAllowed
         from zope.app.http.exception.methodnotallowed \
              import MethodNotAllowedView
-        from zope.publisher.http import HTTPRequest
 
         context = C()
-        request = HTTPRequest(StringIO('PUT /bla/bla HTTP/1.1\n\n'), {})
+        request = HTTPRequest(BytesIO(b'PUT /bla/bla HTTP/1.1\n\n'), {})
         error = MethodNotAllowed(context, request)
         view = MethodNotAllowedView(error, request)
 
@@ -80,7 +78,7 @@ class TestMethodNotAllowedView(TestCase):
 
         self.assertEqual(request.response.getStatus(), 405)
         self.assertEqual(request.response.getHeader('Allow'), 'DELETE, GET')
-        self.assertEqual(result, 'Method Not Allowed')
+        self.assertEqual(result, b'Method Not Allowed')
 
 
     def test_defaultView(self):
@@ -98,7 +96,7 @@ class TestMethodNotAllowedView(TestCase):
         from zope.publisher.browser import BrowserRequest
 
         context = C()
-        request = BrowserRequest(StringIO('PUT /bla/bla HTTP/1.1\n\n'), {})
+        request = BrowserRequest(BytesIO(b'PUT /bla/bla HTTP/1.1\n\n'), {})
 
         error = MethodNotAllowed(context, request)
         view = MethodNotAllowedView(error, request)
@@ -108,7 +106,7 @@ class TestMethodNotAllowedView(TestCase):
         self.assertEqual(request.response.getStatus(), 405)
         #well this is empty, but we're grateful that it does not break
         self.assertEqual(request.response.getHeader('Allow'), '')
-        self.assertEqual(result, 'Method Not Allowed')
+        self.assertEqual(result, b'Method Not Allowed')
 
 
 def test_suite():

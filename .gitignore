@@ -1,8 +1,8 @@
+*.egg-info/
 *.pyc
+.eggs/
 .installed.cfg
+.tox/
 bin/
 develop-eggs/
-eggs/
-*.egg-info/
-.tox/
-.eggs/
+dist/
