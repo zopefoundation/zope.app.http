@@ -88,7 +88,7 @@ class NullPUT(object):
         request.response.setStatus(201)
         request.response.setHeader(
             'Location', zope.traversing.browser.absoluteURL(newfile, request))
-        return ''
+        return b''
 
 
 class FilePUT(object):
@@ -111,4 +111,4 @@ class FilePUT(object):
         length = int(self.request.get('CONTENT_LENGTH', -1))
         adapter.write(body.read(length))
 
-        return ''
+        return b''
