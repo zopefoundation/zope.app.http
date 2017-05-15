@@ -4,11 +4,16 @@ python:
   - 3.3
   - 3.4
   - 3.5
-  - nightly
+  - 3.6
 sudo: false
 install:
-    - pip install tox-travis
+    - pip install -U pip setuptools
+    - pip install -U zope.testrunner
+    - pip install -U -e .[test]
 script:
-    - tox
+    - zope-testrunner --test-path=src
 notifications:
     email: false
+cache: pip
+before_cache:
+  - rm -f $HOME/.cache/pip/log/debug.log

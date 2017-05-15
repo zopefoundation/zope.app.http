@@ -2,10 +2,12 @@
 CHANGES
 =======
 
-4.1.0 (unreleased)
+4.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- The PUT views return an empty byte string instead of an empty native
+  string. On Python 3, the unicode native string leads to a TypeError
+  in zope.publisher.http.
 
 
 4.0.0 (2016-08-08)

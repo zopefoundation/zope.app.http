@@ -76,7 +76,7 @@ class TestNullPUT(TestCase):
         null = zope.app.http.put.NullResource(container, 'spam.txt')
         put = zope.app.http.put.NullPUT(null, request)
         self.assertEqual(getattr(container, 'spam', None), None)
-        self.assertEqual(put.PUT(), '')
+        self.assertEqual(put.PUT(), b'')
         request.response.setResult('')
         file = getattr(container, 'spam.txt')
         self.assertEqual(file.__class__, File)
@@ -106,7 +106,7 @@ class TestNullPUT(TestCase):
         null = zope.app.http.put.NullResource(container, 'spam')
         put = zope.app.http.put.NullPUT(null, request)
         self.assertEqual(getattr(container, 'spam', None), None)
-        self.assertEqual(put.PUT(), '')
+        self.assertEqual(put.PUT(), b'')
         request.response.setResult('')
 
         # Check HTTP Response
@@ -136,7 +136,7 @@ class TestFilePUT(TestCase):
                                'CONTENT_LENGTH': str(len(content)),
                                })
         put = zope.app.http.put.FilePUT(file, request)
-        self.assertEqual(put.PUT(), '')
+        self.assertEqual(put.PUT(), b'')
         request.response.setResult('')
         self.assertEqual(file.data, content)
 
@@ -153,7 +153,7 @@ class TestFilePUT(TestCase):
                                'HTTP_CONTENT_FOO': 'Bar',
                                })
         put = zope.app.http.put.FilePUT(file, request)
-        self.assertEqual(put.PUT(), '')
+        self.assertEqual(put.PUT(), b'')
         request.response.setResult('')
         self.assertEqual(file.data, content)
 
