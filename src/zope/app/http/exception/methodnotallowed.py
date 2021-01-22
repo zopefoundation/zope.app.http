@@ -24,10 +24,10 @@ class MethodNotAllowedView(object):
     def __init__(self, error, request):
         self.error = error
         self.request = request
-        allow = []
 
         try:
-            # see test_methodnotallowed.TestMethodNotAllowedView.test_defaultView
+            # see
+            # test_methodnotallowed.TestMethodNotAllowedView.test_defaultView
             # I could not solve this with a while ... next() iterator
             # because it seems like once the generator had an exception it
             # stops returning items

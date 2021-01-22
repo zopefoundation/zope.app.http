@@ -23,6 +23,7 @@ import zope.app.http.delete
 from zope.container.contained import contained
 from zope.publisher.interfaces.http import MethodNotAllowed
 
+
 class UnwritableContainer(object):
     pass
 
@@ -43,9 +44,9 @@ class TestDelete(TestCase):
 
         request = TestRequest()
         delete = zope.app.http.delete.DELETE(item, request)
-        self.assert_(hasattr(container, 'a'))
+        self.assertTrue(hasattr(container, 'a'))
         self.assertEqual(delete.DELETE(), '')
-        self.assert_(not hasattr(container, 'a'))
+        self.assertFalse(hasattr(container, 'a'))
 
     def test_not_deletable(self):
         container = UnwritableContainer()
@@ -59,4 +60,4 @@ class TestDelete(TestCase):
 def test_suite():
     return TestSuite((
         makeSuite(TestDelete),
-        ))
+    ))

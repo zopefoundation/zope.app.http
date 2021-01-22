@@ -19,13 +19,15 @@ from io import BytesIO
 from zope.interface import implementer
 from zope.publisher.browser import TestRequest
 from zope.filerepresentation.interfaces import IWriteFile
-from zope.filerepresentation.interfaces import IWriteDirectory, IReadDirectory, IFileFactory
+from zope.filerepresentation.interfaces import IWriteDirectory, IReadDirectory
+from zope.filerepresentation.interfaces import IFileFactory
 
 
 import zope.app.http.put
 from zope.location.interfaces import ILocation
 from zope.site.folder import rootFolder
 from zope.app.wsgi.testlayer import BrowserLayer
+
 
 @implementer(IWriteFile, ILocation)
 class File(object):
@@ -37,6 +39,7 @@ class File(object):
 
     def write(self, data):
         self.data = data
+
 
 @implementer(IWriteDirectory, IReadDirectory, IFileFactory, ILocation)
 class Container(object):
@@ -90,10 +93,10 @@ class TestNullPUT(TestCase):
                          "http://127.0.0.1/put/spam.txt")
 
     def test_bad_content_header(self):
-        ## The previous behavour of the PUT method was to fail if the request
-        ## object had a key beginning with 'HTTP_CONTENT_' with a status of 501.
-        ## This was breaking the new Twisted server, so I am now allowing this
-        ## this type of request to be valid.
+        # The previous behavour of the PUT method was to fail if the request
+        # object had a key beginning with 'HTTP_CONTENT_' with a status of 501.
+        # This was breaking the new Twisted server, so I am now allowing this
+        # this type of request to be valid.
         self.rootFolder = rootFolder()
         container = Container("/put")
         self.rootFolder["put"] = container
@@ -141,10 +144,10 @@ class TestFilePUT(TestCase):
         self.assertEqual(file.data, content)
 
     def test_bad_content_header(self):
-        ## The previous behavour of the PUT method was to fail if the request
-        ## object had a key beginning with 'HTTP_CONTENT_' with a status of 501.
-        ## This was breaking the new Twisted server, so I am now allowing this
-        ## this type of request to be valid.
+        # The previous behavour of the PUT method was to fail if the request
+        # object had a key beginning with 'HTTP_CONTENT_' with a status of 501.
+        # This was breaking the new Twisted server, so I am now allowing this
+        # this type of request to be valid.
         file = File("thefile", "text/x", "initial content")
         content = b"some content\n for testing"
         request = TestRequest(BytesIO(content),
@@ -177,4 +180,4 @@ def test_suite():
     return TestSuite((
         makeSuite(TestFilePUT),
         makeSuite(TestNullPUT),
-        ))
+    ))

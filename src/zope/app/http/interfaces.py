@@ -13,11 +13,11 @@
 ##############################################################################
 """Zope-specific HTTP interfaces
 """
-__docformat__ = 'restructuredtext'
-
 from zope.interface import Interface, Attribute
 
-from zope.publisher.interfaces.http import IHTTPException #BBB import
+# BBB import
+from zope.publisher.interfaces.http import IHTTPException  # noqa: F401 unused
+
 
 class INullResource(Interface):
     """Placeholder objects for new container items to be created via PUT
@@ -25,4 +25,3 @@ class INullResource(Interface):
 
     container = Attribute("The container of the future resource")
     name = Attribute("The name of the object to be created.")
-

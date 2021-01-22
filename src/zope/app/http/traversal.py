@@ -22,6 +22,7 @@ from zope.app.http.put import NullResource
 from zope.publisher.interfaces import NotFound
 from zope.interface import implementer
 
+
 @implementer(IHTTPPublisher)
 class ContainerTraverser(object):
     __used_for__ = ISimpleReadContainer
@@ -46,10 +47,11 @@ class ContainerTraverser(object):
             raise NotFound(self.context, name, request)
 
         # This should only happen for a PUT or MKCOL:
-        if request.method not in  ['PUT', 'MKCOL']:
+        if request.method not in ['PUT', 'MKCOL']:
             raise NotFound(self.context, name, request)
 
         return NullResource(self.context, name)
+
 
 class ItemTraverser(ContainerTraverser):
     __used_for__ = IItemContainer

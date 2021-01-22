@@ -2,10 +2,12 @@
 CHANGES
 =======
 
-4.0.2 (unreleased)
+4.1.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Python 3.7, 3.8 and 3.9.
+
+- Drop support for Python 3.3 and 3.4.
 
 
 4.0.1 (2017-05-16)
@@ -22,6 +24,7 @@ CHANGES
 - Added support for Python 3.3 up to 3.6.
 
 - Added support for PyPy2.
+
 
 3.10.2 (2011-08-09)
 -------------------

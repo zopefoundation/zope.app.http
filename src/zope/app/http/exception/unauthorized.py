@@ -18,6 +18,7 @@ __docformat__ = 'restructuredtext'
 from zope.publisher.interfaces.http import IHTTPException
 from zope.interface import implementer
 
+
 @implementer(IHTTPException)
 class Unauthorized(object):
 

@@ -13,11 +13,12 @@
 ##############################################################################
 """Test HTTP-specific object traversers
 """
-from unittest import TestCase, TestSuite, main, makeSuite
+from unittest import TestCase, TestSuite, makeSuite
 from zope.publisher.interfaces import NotFound
 from zope.app.http.traversal import ContainerTraverser, ItemTraverser
 from zope.publisher.browser import TestRequest
 from zope.app.http.put import NullResource
+
 
 class Items(object):
 
@@ -27,11 +28,12 @@ class Items(object):
     def __getitem__(self, name):
         return self.data[name]
 
+
 class Container(Items):
 
     def get(self, name, default=None):
         return self.data.get(name, default)
-    
+
 
 class TestContainer(TestCase):
 
@@ -50,7 +52,6 @@ class TestContainer(TestCase):
         traverser = self.Traverser(container, request)
         self.assertRaises(NotFound,
                           traverser.publishTraverse, request, 'bar')
-    
 
     def testNull(self):
         container = self.Container({'foo': 42})
@@ -61,19 +62,16 @@ class TestContainer(TestCase):
         self.assertEqual(null.__class__, NullResource)
         self.assertEqual(null.container, container)
         self.assertEqual(null.name, 'bar')
-        
+
 
 class TestItem(TestContainer):
 
     Container = Items
     Traverser = ItemTraverser
-    
+
 
 def test_suite():
     return TestSuite((
         makeSuite(TestContainer),
         makeSuite(TestItem),
-        ))
-
-if __name__=='__main__':
-    main(defaultTest='test_suite')
+    ))
