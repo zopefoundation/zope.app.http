@@ -13,9 +13,10 @@
 ##############################################################################
 """Unauthorized Exception Test
 """
-from unittest import TestCase, main, makeSuite
+from unittest import TestCase, makeSuite
 from zope.publisher.browser import TestRequest
 from zope.publisher.interfaces.http import IHTTPException
+
 
 class Test(TestCase):
 
@@ -24,23 +25,22 @@ class Test(TestCase):
         exception = Exception()
         try:
             raise exception
-        except:
+        except:  # noqa: E722 do not use bare 'except'
             pass
         request = TestRequest()
         u = Unauthorized(exception, request)
 
         # Chech that we implement the right interface
-        self.failUnless(IHTTPException.providedBy(u))
-        
+        self.assertTrue(IHTTPException.providedBy(u))
+
         # Call the view
         u()
-        
+
         # Make sure the response status was set
         self.assertEqual(request.response.getStatus(), 401)
-        self.failUnless(request.response.getHeader('WWW-Authenticate', '', True).startswith('basic'))
+        self.assertTrue(request.response.getHeader(
+            'WWW-Authenticate', '', True).startswith('basic'))
+
 
 def test_suite():
     return makeSuite(Test)
-
-if __name__=='__main__':
-    main(defaultTest='test_suite')

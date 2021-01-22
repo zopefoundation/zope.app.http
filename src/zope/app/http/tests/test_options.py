@@ -34,6 +34,7 @@ class Deletable(object):
 
 class DeleteView(object):
     "A view for a deletable object"
+
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -71,4 +72,4 @@ class TestOptions(TestCase):
 def test_suite():
     return TestSuite((
         makeSuite(TestOptions),
-        ))
+    ))

@@ -18,6 +18,7 @@ __docformat__ = 'restructuredtext'
 from zope.publisher.interfaces.http import IHTTPException
 from zope.interface import implementer
 
+
 @implementer(IHTTPException)
 class NotFound(object):
 
@@ -27,7 +28,7 @@ class NotFound(object):
 
     def __call__(self):
         if self.request.method in ['MKCOL'] and \
-               self.request.getTraversalStack():
+                self.request.getTraversalStack():
             # MKCOL with non-existing parent.
             self.request.response.setStatus(409)
         else:

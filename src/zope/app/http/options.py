@@ -11,14 +11,14 @@
 ##############################################################################
 """HTTP method `OPTIONS`
 """
+from zope.component import queryMultiAdapter
 __docformat__ = 'restructuredtext'
 
-_allowed_methods = ['PUT', 'DELETE', 'CONNECT', \
-           'OPTIONS', 'PATCH', 'PROPFIND', 'PROPPATCH', 'MKCOL', \
-           'COPY', 'MOVE', 'LOCK', 'UNLOCK', 'TRACE']
-           # 'GET', 'HEAD', 'POST' are always available. See OPTIONS() method.
+_allowed_methods = ['PUT', 'DELETE', 'CONNECT',
+                    'OPTIONS', 'PATCH', 'PROPFIND', 'PROPPATCH', 'MKCOL',
+                    'COPY', 'MOVE', 'LOCK', 'UNLOCK', 'TRACE']
+# 'GET', 'HEAD', 'POST' are always available. See OPTIONS() method.
 
-from zope.component import queryMultiAdapter
 
 class OPTIONS(object):
     """`OPTIONS` handler for all objects
@@ -46,4 +46,3 @@ class OPTIONS(object):
         self.request.response.setHeader('MS-Author-Via', 'DAV', literal=True)
         self.request.response.setStatus(200)
         return ''
-

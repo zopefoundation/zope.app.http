@@ -21,19 +21,21 @@
 import os
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
+
 setup(name='zope.app.http',
-      version='4.0.2.dev0',
-      author='Zope Corporation and Contributors',
+      version='4.1.0.dev0',
+      author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='HTTP Behavior for the Zope Publisher',
       long_description=(
           read('README.txt')
           + '\n\n' +
           read('CHANGES.txt')
-          ),
+      ),
       keywords="zope3 http publisher view",
       classifiers=[
           'Development Status :: 5 - Production/Stable',
@@ -41,13 +43,13 @@ setup(name='zope.app.http',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Zope Public License',
           'Programming Language :: Python :: 2',
-          'Programming Language :: Python :: 2.6',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
-          'Programming Language :: Python :: 3.3',
-          'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: 3.5',
           'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.8',
+          'Programming Language :: Python :: 3.9',
           'Programming Language :: Python :: Implementation',
           'Programming Language :: Python :: Implementation :: CPython',
           'Programming Language :: Python :: Implementation :: PyPy',
