@@ -13,10 +13,10 @@
 ##############################################################################
 """HTTP Server Date/Time utilities
 """
+import calendar
 import re
 import string
 import time
-import calendar
 
 
 def concat(*args):

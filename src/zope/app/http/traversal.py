@@ -16,15 +16,17 @@ We also never traverse to views.
 """
 __docformat__ = 'restructuredtext'
 
-from zope.publisher.interfaces.http import IHTTPPublisher
-from zope.container.interfaces import ISimpleReadContainer, IItemContainer
-from zope.app.http.put import NullResource
-from zope.publisher.interfaces import NotFound
+from zope.container.interfaces import IItemContainer
+from zope.container.interfaces import ISimpleReadContainer
 from zope.interface import implementer
+from zope.publisher.interfaces import NotFound
+from zope.publisher.interfaces.http import IHTTPPublisher
+
+from zope.app.http.put import NullResource
 
 
 @implementer(IHTTPPublisher)
-class ContainerTraverser(object):
+class ContainerTraverser:
     __used_for__ = ISimpleReadContainer
 
     def __init__(self, container, request):

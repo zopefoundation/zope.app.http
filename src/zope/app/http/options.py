@@ -12,6 +12,8 @@
 """HTTP method `OPTIONS`
 """
 from zope.component import queryMultiAdapter
+
+
 __docformat__ = 'restructuredtext'
 
 _allowed_methods = ['PUT', 'DELETE', 'CONNECT',
@@ -20,7 +22,7 @@ _allowed_methods = ['PUT', 'DELETE', 'CONNECT',
 # 'GET', 'HEAD', 'POST' are always available. See OPTIONS() method.
 
 
-class OPTIONS(object):
+class OPTIONS:
     """`OPTIONS` handler for all objects
     """
 

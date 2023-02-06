@@ -13,7 +13,9 @@
 ##############################################################################
 """Unauthorized Exception Test
 """
-from unittest import TestCase, makeSuite
+from unittest import TestCase
+from unittest import makeSuite
+
 from zope.publisher.browser import TestRequest
 from zope.publisher.interfaces.http import IHTTPException
 

@@ -16,7 +16,7 @@ from zope.interface import Interface
 from zope.publisher.interfaces.http import IMethodNotAllowed
 
 
-class MethodNotAllowedView(object):
+class MethodNotAllowedView:
     """A view for MethodNotAllowed that renders a HTTP 405 response."""
 
     __used_for__ = IMethodNotAllowed

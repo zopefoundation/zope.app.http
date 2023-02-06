@@ -12,20 +12,22 @@
 """HTTP `PUT` verb"""
 __docformat__ = 'restructuredtext'
 
+import zope.publisher.interfaces.http
+import zope.traversing.browser
 from zope.component import queryAdapter
 from zope.event import notify
-from zope.lifecycleevent import ObjectCreatedEvent
-from zope.interface import implementer
+from zope.filerepresentation.interfaces import IFileFactory
+from zope.filerepresentation.interfaces import IReadDirectory
+from zope.filerepresentation.interfaces import IWriteDirectory
 from zope.filerepresentation.interfaces import IWriteFile
-from zope.filerepresentation.interfaces import \
-    IWriteDirectory, IReadDirectory, IFileFactory
-import zope.traversing.browser
-import zope.publisher.interfaces.http
+from zope.interface import implementer
+from zope.lifecycleevent import ObjectCreatedEvent
+
 from zope.app.http.interfaces import INullResource
 
 
 @implementer(INullResource)
-class NullResource(object):
+class NullResource:
     """Object representing objects to be created by a `PUT`.
     """
 
@@ -34,7 +36,7 @@ class NullResource(object):
         self.name = name
 
 
-class NullPUT(object):
+class NullPUT:
     """Put handler for null resources (new file-like things)
 
     This view creates new objects in containers.
@@ -91,7 +93,7 @@ class NullPUT(object):
         return b''
 
 
-class FilePUT(object):
+class FilePUT:
     """Put handler for existing file-like things
 
     """

@@ -17,7 +17,7 @@ from zope.filerepresentation.interfaces import IWriteDirectory
 from zope.publisher.interfaces.http import MethodNotAllowed
 
 
-class DELETE(object):
+class DELETE:
     """Delete handler for all objects
     """
 

@@ -13,24 +13,26 @@
 ##############################################################################
 """Test HTTP PUT verb
 """
-from unittest import TestCase, TestSuite, makeSuite
 from io import BytesIO
+from unittest import TestCase
+from unittest import TestSuite
+from unittest import makeSuite
 
-from zope.interface import implementer
-from zope.publisher.browser import TestRequest
-from zope.filerepresentation.interfaces import IWriteFile
-from zope.filerepresentation.interfaces import IWriteDirectory, IReadDirectory
+from zope.app.wsgi.testlayer import BrowserLayer
 from zope.filerepresentation.interfaces import IFileFactory
-
+from zope.filerepresentation.interfaces import IReadDirectory
+from zope.filerepresentation.interfaces import IWriteDirectory
+from zope.filerepresentation.interfaces import IWriteFile
+from zope.interface import implementer
+from zope.location.interfaces import ILocation
+from zope.publisher.browser import TestRequest
+from zope.site.folder import rootFolder
 
 import zope.app.http.put
-from zope.location.interfaces import ILocation
-from zope.site.folder import rootFolder
-from zope.app.wsgi.testlayer import BrowserLayer
 
 
 @implementer(IWriteFile, ILocation)
-class File(object):
+class File:
 
     def __init__(self, name, content_type, data):
         self.name = name
@@ -42,7 +44,7 @@ class File(object):
 
 
 @implementer(IWriteDirectory, IReadDirectory, IFileFactory, ILocation)
-class Container(object):
+class Container:
 
     __name__ = None
     __parent__ = None
