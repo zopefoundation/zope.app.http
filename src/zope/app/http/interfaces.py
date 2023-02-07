@@ -13,8 +13,8 @@
 ##############################################################################
 """Zope-specific HTTP interfaces
 """
-from zope.interface import Interface, Attribute
-
+from zope.interface import Attribute
+from zope.interface import Interface
 # BBB import
 from zope.publisher.interfaces.http import IHTTPException  # noqa: F401 unused
 

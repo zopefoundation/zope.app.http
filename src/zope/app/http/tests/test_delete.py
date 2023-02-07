@@ -13,23 +13,26 @@
 ##############################################################################
 """Test HTTP DELETE verb
 """
-from unittest import TestCase, TestSuite, makeSuite
+from unittest import TestCase
+from unittest import TestSuite
+from unittest import makeSuite
 
+from zope.container.contained import contained
+from zope.filerepresentation.interfaces import IFileFactory
+from zope.filerepresentation.interfaces import IWriteDirectory
 from zope.interface import implementer
 from zope.publisher.browser import TestRequest
-from zope.filerepresentation.interfaces import IWriteDirectory, IFileFactory
-
-import zope.app.http.delete
-from zope.container.contained import contained
 from zope.publisher.interfaces.http import MethodNotAllowed
 
+import zope.app.http.delete
 
-class UnwritableContainer(object):
+
+class UnwritableContainer:
     pass
 
 
 @implementer(IWriteDirectory, IFileFactory)
-class Container(object):
+class Container:
 
     def __delitem__(self, name):
         delattr(self, name)

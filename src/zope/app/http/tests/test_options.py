@@ -13,10 +13,11 @@
 ##############################################################################
 """Test HTTP OPTIONS verb
 """
-from unittest import TestCase, TestSuite, makeSuite
+from unittest import TestCase
+from unittest import TestSuite
+from unittest import makeSuite
 
 import zope.interface
-
 from zope.publisher.browser import IBrowserRequest
 from zope.publisher.browser import TestRequest
 
@@ -28,11 +29,11 @@ class IDeletable(zope.interface.Interface):
 
 
 @zope.interface.implementer(IDeletable)
-class Deletable(object):
+class Deletable:
     "Rocket science implementation of IDeletable"
 
 
-class DeleteView(object):
+class DeleteView:
     "A view for a deletable object"
 
     def __init__(self, context, request):

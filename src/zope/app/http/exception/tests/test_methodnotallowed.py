@@ -13,14 +13,16 @@
 ##############################################################################
 """Tests for HTTP error views
 """
-from unittest import TestCase, TestSuite, makeSuite
 from io import BytesIO
-
-from zope.interface import Interface, implementer
-from zope.publisher.http import HTTPRequest
-from zope.publisher.interfaces.http import IHTTPRequest
+from unittest import TestCase
+from unittest import TestSuite
+from unittest import makeSuite
 
 from zope.component import provideAdapter
+from zope.interface import Interface
+from zope.interface import implementer
+from zope.publisher.http import HTTPRequest
+from zope.publisher.interfaces.http import IHTTPRequest
 
 
 class Iface(Interface):
@@ -28,11 +30,11 @@ class Iface(Interface):
 
 
 @implementer(Iface)
-class C(object):
+class C:
     pass
 
 
-class GetView(object):
+class GetView:
     def __init__(self, context, request):
         pass
 
@@ -40,7 +42,7 @@ class GetView(object):
         pass
 
 
-class DeleteView(object):
+class DeleteView:
     def __init__(self, context, request):
         pass
 
@@ -59,6 +61,7 @@ class TestMethodNotAllowedView(TestCase):
 
         from zope.publisher.interfaces import IDefaultViewName
         from zope.publisher.interfaces.browser import IBrowserRequest
+
         # do the same as defaultView would for something like:
         # <defaultView
         #    for=".test_methodnotallowed.I"
@@ -66,12 +69,13 @@ class TestMethodNotAllowedView(TestCase):
         #    />
 
         provideAdapter(
-            u'index.html', (Iface, IBrowserRequest), IDefaultViewName)
+            'index.html', (Iface, IBrowserRequest), IDefaultViewName)
 
     def test(self):
         from zope.publisher.interfaces.http import MethodNotAllowed
-        from zope.app.http.exception.methodnotallowed \
-            import MethodNotAllowedView
+
+        from zope.app.http.exception.methodnotallowed import \
+            MethodNotAllowedView
 
         context = C()
         request = HTTPRequest(BytesIO(b'PUT /bla/bla HTTP/1.1\n\n'), {})
@@ -93,10 +97,11 @@ class TestMethodNotAllowedView(TestCase):
         # this might be an issue with zope.publisher, as it provides
         # a unicode object with provideAdapter, but I don't think I can
         # change zope.publisher
-        from zope.publisher.interfaces.http import MethodNotAllowed
-        from zope.app.http.exception.methodnotallowed \
-            import MethodNotAllowedView
         from zope.publisher.browser import BrowserRequest
+        from zope.publisher.interfaces.http import MethodNotAllowed
+
+        from zope.app.http.exception.methodnotallowed import \
+            MethodNotAllowedView
 
         context = C()
         request = BrowserRequest(BytesIO(b'PUT /bla/bla HTTP/1.1\n\n'), {})

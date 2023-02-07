@@ -13,14 +13,19 @@
 ##############################################################################
 """Test HTTP-specific object traversers
 """
-from unittest import TestCase, TestSuite, makeSuite
-from zope.publisher.interfaces import NotFound
-from zope.app.http.traversal import ContainerTraverser, ItemTraverser
+from unittest import TestCase
+from unittest import TestSuite
+from unittest import makeSuite
+
 from zope.publisher.browser import TestRequest
+from zope.publisher.interfaces import NotFound
+
 from zope.app.http.put import NullResource
+from zope.app.http.traversal import ContainerTraverser
+from zope.app.http.traversal import ItemTraverser
 
 
-class Items(object):
+class Items:
 
     def __init__(self, data):
         self.data = data

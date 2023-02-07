@@ -15,12 +15,12 @@
 """
 __docformat__ = 'restructuredtext'
 
-from zope.publisher.interfaces.http import IHTTPException
 from zope.interface import implementer
+from zope.publisher.interfaces.http import IHTTPException
 
 
 @implementer(IHTTPException)
-class Unauthorized(object):
+class Unauthorized:
 
     def __init__(self, context, request):
         self.context = context
