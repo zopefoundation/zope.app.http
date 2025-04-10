@@ -14,8 +14,6 @@
 """Test HTTP OPTIONS verb
 """
 from unittest import TestCase
-from unittest import TestSuite
-from unittest import makeSuite
 
 import zope.interface
 from zope.publisher.browser import IBrowserRequest
@@ -68,9 +66,3 @@ class TestOptions(TestCase):
         self.assertEqual(options.OPTIONS(), '')
         getHeader = request.response.getHeader
         self.assertEqual(getHeader('Allow'), 'GET, HEAD, POST, PUT')
-
-
-def test_suite():
-    return TestSuite((
-        makeSuite(TestOptions),
-    ))
