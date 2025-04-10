@@ -14,8 +14,6 @@
 """Test HTTP-specific object traversers
 """
 from unittest import TestCase
-from unittest import TestSuite
-from unittest import makeSuite
 
 from zope.publisher.browser import TestRequest
 from zope.publisher.interfaces import NotFound
@@ -73,10 +71,3 @@ class TestItem(TestContainer):
 
     Container = Items
     Traverser = ItemTraverser
-
-
-def test_suite():
-    return TestSuite((
-        makeSuite(TestContainer),
-        makeSuite(TestItem),
-    ))

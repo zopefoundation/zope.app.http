@@ -50,7 +50,7 @@ months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul',
 
 monmap = {}
 for i in range(12):
-    monmap[months[i]] = i+1
+    monmap[months[i]] = i + 1
 
 months_reg = group(join(months, '|'))
 

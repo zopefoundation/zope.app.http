@@ -15,8 +15,6 @@
 """
 from io import BytesIO
 from unittest import TestCase
-from unittest import TestSuite
-from unittest import makeSuite
 
 from zope.component import provideAdapter
 from zope.interface import Interface
@@ -115,9 +113,3 @@ class TestMethodNotAllowedView(TestCase):
         # well this is empty, but we're grateful that it does not break
         self.assertEqual(request.response.getHeader('Allow'), '')
         self.assertEqual(result, b'Method Not Allowed')
-
-
-def test_suite():
-    return TestSuite((
-        makeSuite(TestMethodNotAllowedView),
-    ))

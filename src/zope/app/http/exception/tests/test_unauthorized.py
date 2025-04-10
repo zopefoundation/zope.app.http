@@ -14,7 +14,6 @@
 """Unauthorized Exception Test
 """
 from unittest import TestCase
-from unittest import makeSuite
 
 from zope.publisher.browser import TestRequest
 from zope.publisher.interfaces.http import IHTTPException
@@ -42,7 +41,3 @@ class Test(TestCase):
         self.assertEqual(request.response.getStatus(), 401)
         self.assertTrue(request.response.getHeader(
             'WWW-Authenticate', '', True).startswith('basic'))
-
-
-def test_suite():
-    return makeSuite(Test)

@@ -15,8 +15,6 @@
 """
 from io import BytesIO
 from unittest import TestCase
-from unittest import TestSuite
-from unittest import makeSuite
 
 from zope.app.wsgi.testlayer import BrowserLayer
 from zope.filerepresentation.interfaces import IFileFactory
@@ -176,10 +174,3 @@ class TestFilePUT(TestCase):
         put = zope.app.http.put.FilePUT(file, request)
         self.assertRaises(zope.publisher.interfaces.http.MethodNotAllowed,
                           put.PUT)
-
-
-def test_suite():
-    return TestSuite((
-        makeSuite(TestFilePUT),
-        makeSuite(TestNullPUT),
-    ))

@@ -14,8 +14,6 @@
 """Test HTTP DELETE verb
 """
 from unittest import TestCase
-from unittest import TestSuite
-from unittest import makeSuite
 
 from zope.container.contained import contained
 from zope.filerepresentation.interfaces import IFileFactory
@@ -58,9 +56,3 @@ class TestDelete(TestCase):
         request = TestRequest()
         delete = zope.app.http.delete.DELETE(item, request)
         self.assertRaises(MethodNotAllowed, delete.DELETE)
-
-
-def test_suite():
-    return TestSuite((
-        makeSuite(TestDelete),
-    ))
