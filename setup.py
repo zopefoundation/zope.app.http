@@ -20,7 +20,6 @@
 """
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -29,7 +28,7 @@ def read(*rnames):
 
 
 setup(name='zope.app.http',
-      version='5.1.dev0',
+      version='6.0.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.dev',
       description='HTTP Behavior for the Zope Publisher',
@@ -60,9 +59,6 @@ setup(name='zope.app.http',
       ],
       url='https://github.com/zopefoundation/zope.app.http',
       license='ZPL-2.1',
-      packages=find_packages('src'),
-      package_dir={'': 'src'},
-      namespace_packages=['zope', 'zope.app'],
       python_requires='>=3.9',
       extras_require=dict(
           test=[
@@ -74,7 +70,7 @@ setup(name='zope.app.http',
               'zope.principalregistry',
               'zope.securitypolicy >= 4.0.0a1',
               'zope.site >= 4.0.0a1',
-              'zope.testrunner',
+              'zope.testrunner >= 6.4',
           ]),
       install_requires=[
           'setuptools',
