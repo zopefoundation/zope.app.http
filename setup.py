@@ -28,7 +28,7 @@ def read(*rnames):
 
 
 setup(name='zope.app.http',
-      version='6.0',
+      version='6.1.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.dev',
       description='HTTP Behavior for the Zope Publisher',
