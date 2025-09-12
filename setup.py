@@ -33,9 +33,9 @@ setup(name='zope.app.http',
       author_email='zope-dev@zope.dev',
       description='HTTP Behavior for the Zope Publisher',
       long_description=(
-          read('README.txt')
+          read('README.rst')
           + '\n\n' +
-          read('CHANGES.txt')
+          read('CHANGES.rst')
       ),
       keywords="zope3 http publisher view",
       classifiers=[
